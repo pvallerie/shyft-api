@@ -1,15 +1,16 @@
 #!/bin/bash
 
-curl "http://localhost:8000/mangos/${ID}" \
+curl "http://localhost:8000/bikes/${ID}" \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \
   --header "Authorization: Token ${TOKEN}" \
   --data '{
-    "mango": {
+    "bike": {
       "name": "'"${NAME}"'",
-      "color": "'"${COLOR}"'",
-      "ripe": "'"${RIPE}"'"
+      "type": "'"${TYPE}"'",
+      "size": "'"${SIZE}"'",
+      "location": "'"${LOCATION}"'"
     }
   }'
 

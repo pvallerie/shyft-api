@@ -1,15 +1,16 @@
 #!/bin/bash
 
-curl "http://localhost:8000/mangos" \
+curl "http://localhost:8000/bikes" \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Token ${TOKEN}" \
   --data '{
-    "mango": {
+    "bike": {
       "name": "'"${NAME}"'",
-      "color": "'"${COLOR}"'",
-      "ripe": "'"${RIPE}"'"
+      "type": "'"${TYPE}"'",
+      "size": "'"${SIZE}"'",
+      "location": "'"${LOCATION}"'"
     }
   }'
 

@@ -1,6 +1,7 @@
 from django.urls import path
 from .views.mango_views import Mangos, MangoDetail
 from .views.bike_views import Bikes, BikeDetail
+from .views.loan_views import Loans, LoanDetail
 from .views.user_views import SignUp, SignIn, SignOut, ChangePassword
 
 urlpatterns = [
@@ -9,6 +10,8 @@ urlpatterns = [
     # path('mangos/<int:pk>/', MangoDetail.as_view(), name='mango_detail'),
     path('bikes', Bikes.as_view(), name='bikes'),
     path('bikes/<int:pk>', BikeDetail.as_view(), name='bike_detail'),
+    path('loans', Loans.as_view(), name='loans'),
+    path('loans/<int:pk>', LoanDetail.as_view(), name='loan_detail'),
     path('sign-up/', SignUp.as_view(), name='sign-up'),
     path('sign-in/', SignIn.as_view(), name='sign-in'),
     path('sign-out/', SignOut.as_view(), name='sign-out'),

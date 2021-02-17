@@ -16,6 +16,7 @@ class Bike(models.Model):
   # size = MultiSelectField(choices=MY_SIZE_CHOICES)
   type = models.CharField(max_length=20)
   size = models.CharField(max_length=20)
+  rate = models.DecimalField(max_digits=6, decimal_places=2)
   location = models.CharField(max_length=100)
   owner = models.ForeignKey(
     get_user_model(),

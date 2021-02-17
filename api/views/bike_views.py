@@ -12,7 +12,7 @@ from ..serializers import BikeSerializer
 
 class Bikes(generics.ListCreateAPIView):
   permission_classes=(IsAuthenticated,)
-  serializer_class= BikeSerializer
+  serializer_class=BikeSerializer
   def get(self, request):
     """Index Request"""
     bikes = Bike.objects.all()

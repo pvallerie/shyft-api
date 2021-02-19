@@ -11,16 +11,6 @@ class MangoSerializer(serializers.ModelSerializer):
         model = Mango
         fields = ('id', 'name', 'color', 'ripe', 'owner')
 
-class BikeSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Bike
-    fields = '__all__'
-
-class LoanSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Loan
-    fields = ('id', 'pickup_date', 'dropoff_date', 'bike', 'bike_loaner')
-
 class UserSerializer(serializers.ModelSerializer):
     # This model serializer will be used for User creation
     # The login serializer also inherits from this serializer
@@ -57,3 +47,15 @@ class ChangePasswordSerializer(serializers.Serializer):
     model = get_user_model()
     old = serializers.CharField(required=True)
     new = serializers.CharField(required=True)
+
+class BikeSerializer(serializers.ModelSerializer):
+  owner = UserSerializer()
+  class Meta:
+    model = Bike
+    fields = ('owner', 'name', 'type', 'size', 'rate', 'location')
+
+class LoanSerializer(serializers.ModelSerializer):
+  bike = BikeSerializer()
+  class Meta:
+    model = Loan
+    fields = ('id', 'pickup_date', 'dropoff_date', 'bike', 'bike_loaner')

@@ -52,7 +52,12 @@ class BikeSerializer(serializers.ModelSerializer):
   owner = UserSerializer()
   class Meta:
     model = Bike
-    fields = ('owner', 'name', 'type', 'size', 'rate', 'location')
+    fields = ('owner', 'name', 'type', 'size', 'rate', 'location', 'id')
+
+class UpdateBikeSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Bike
+    fields = ('name', 'type', 'size', 'rate', 'location', 'id')
 
 class LoanSerializer(serializers.ModelSerializer):
   bike = BikeSerializer()

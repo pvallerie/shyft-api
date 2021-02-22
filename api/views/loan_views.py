@@ -51,7 +51,7 @@ class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
     if not request.user.id == loan.bike_loaner.id:
       raise PermissionDenied('Unauthorized, you do not own this loan.')
     request.data['loan']['bike_loaner'] = request.user.id
-    data = LoanSerializer(loan, data=request.data['loan'])
+    data = LoanSerializer(loan, data=request.data['loan'], partial=True)
     if data.is_valid():
       data.save()
       return Response(status=status.HTTP_204_NO_CONTENT)

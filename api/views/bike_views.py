@@ -8,7 +8,7 @@ from django.contrib.auth import get_user, authenticate, login, logout
 from django.middleware.csrf import get_token
 
 from ..models.bike import Bike
-from ..serializers import BikeSerializer
+from ..serializers import BikeSerializer, UpdateBikeSerializer
 
 class Bikes(generics.ListCreateAPIView):
   permission_classes=(IsAuthenticated,)
@@ -50,7 +50,7 @@ class BikeDetail(generics.RetrieveUpdateDestroyAPIView):
     if not request.user.id == bike.owner.id:
       raise PermissionDenied('Unauthorized, you do not own this bike.')
     request.data['bike']['owner'] = request.user.id
-    data = BikeSerializer(bike, data=request.data['bike'])
+    data = UpdateBikeSerializer(bike, data=request.data['bike'], partial=True)
     if data.is_valid():
       data.save()
       return Response(status=status.HTTP_204_NO_CONTENT)

@@ -1,19 +1,9 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-# from multiselectfield import MultiSelectField
-#
-# MY_TYPE_CHOICES = (('Mountain', 'Mountain'),
-#                    ('Road', 'Road'),
-#                    ('Trail', 'Trail'))
-#
-# MY_SIZE_CHOICES = (('S', 'Small'),
-#                    ('M', 'Medium'),
-#                    ('L', 'Large'))
 
 class Bike(models.Model):
   name = models.CharField(max_length=100)
-  # type = MultiSelectField(choices=MY_TYPE_CHOICES)
-  # size = MultiSelectField(choices=MY_SIZE_CHOICES)
+  image = models.CharField(max_length=300)
   type = models.CharField(max_length=20)
   size = models.CharField(max_length=20)
   rate = models.DecimalField(max_digits=6, decimal_places=2)
@@ -32,6 +22,7 @@ class Bike(models.Model):
     return {
       'id': self.id,
       'name': self.name,
+      'image': self.image,
       'type': self.type,
       'size': self.size,
       'location': self.location,

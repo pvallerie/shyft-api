@@ -64,3 +64,8 @@ class LoanSerializer(serializers.ModelSerializer):
   class Meta:
     model = Loan
     fields = ('id', 'pickup_date', 'dropoff_date', 'bike', 'bike_loaner')
+
+class UpdateLoanSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Loan
+    fields = ('id', 'pickup_date', 'dropoff_date', 'bike_loaner')

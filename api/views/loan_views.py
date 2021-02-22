@@ -8,7 +8,7 @@ from django.contrib.auth import get_user, authenticate, login, logout
 from django.middleware.csrf import get_token
 
 from ..models.loan import Loan
-from ..serializers import LoanSerializer
+from ..serializers import LoanSerializer, UpdateLoanSerializer
 
 class Loans(generics.ListCreateAPIView):
   permission_classes=(IsAuthenticated,)
@@ -51,7 +51,7 @@ class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
     if not request.user.id == loan.bike_loaner.id:
       raise PermissionDenied('Unauthorized, you do not own this loan.')
     request.data['loan']['bike_loaner'] = request.user.id
-    data = LoanSerializer(loan, data=request.data['loan'])
+    data = UpdateLoanSerializer(loan, data=request.data['loan'], partial=True)
     if data.is_valid():
       data.save()
       return Response(status=status.HTTP_204_NO_CONTENT)

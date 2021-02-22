@@ -54,6 +54,11 @@ class BikeSerializer(serializers.ModelSerializer):
     model = Bike
     fields = ('owner', 'name', 'type', 'size', 'rate', 'location', 'id')
 
+class BikeForCreateLoanSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Bike
+    fields = ('name', 'type', 'size', 'rate', 'location', 'id')
+
 class UpdateBikeSerializer(serializers.ModelSerializer):
   class Meta:
     model = Bike
@@ -61,6 +66,11 @@ class UpdateBikeSerializer(serializers.ModelSerializer):
 
 class LoanSerializer(serializers.ModelSerializer):
   bike = BikeSerializer()
+  class Meta:
+    model = Loan
+    fields = ('id', 'pickup_date', 'dropoff_date', 'bike', 'bike_loaner')
+
+class CreateLoanSerializer(serializers.ModelSerializer):
   class Meta:
     model = Loan
     fields = ('id', 'pickup_date', 'dropoff_date', 'bike', 'bike_loaner')

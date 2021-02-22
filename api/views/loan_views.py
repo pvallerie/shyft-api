@@ -8,7 +8,7 @@ from django.contrib.auth import get_user, authenticate, login, logout
 from django.middleware.csrf import get_token
 
 from ..models.loan import Loan
-from ..serializers import LoanSerializer, UpdateLoanSerializer
+from ..serializers import LoanSerializer, UpdateLoanSerializer, CreateLoanSerializer
 
 class Loans(generics.ListCreateAPIView):
   permission_classes=(IsAuthenticated,)
@@ -23,7 +23,7 @@ class Loans(generics.ListCreateAPIView):
   def post(self, request):
     """Create loan"""
     request.data['loan']['bike_loaner'] = request.user.id
-    loan = LoanSerializer(data=request.data['loan'])
+    loan = CreateLoanSerializer(data=request.data['loan'])
     if loan.is_valid():
       l = loan.save()
       return Response(loan.data, status=status.HTTP_201_CREATED)

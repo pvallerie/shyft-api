@@ -67,7 +67,7 @@ class BikeForCreateLoanSerializer(serializers.ModelSerializer):
 class UpdateBikeSerializer(serializers.ModelSerializer):
   class Meta:
     model = Bike
-    fields = ('name', 'type', 'size', 'rate', 'location', 'id')
+    fields = ('name', 'type', 'size', 'rate', 'location', 'id', 'image')
 
 class LoanSerializer(serializers.ModelSerializer):
   bike = BikeSerializer()
